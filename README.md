@@ -154,7 +154,7 @@ def calculate_stock_market_statistics(companies_list: List) -> Tuple:
 Here’s how you can use the functions in your code:
 
 ```python
-from your_module import get_random_profiles, calculate_statistics_with_named_tuples, calculate_statistics_with_dict, get_random_companies, calculate_stock_market_statistics
+from faker_usage import get_random_profiles, calculate_statistics_with_named_tuples, calculate_statistics_with_dict, get_random_companies, calculate_stock_market_statistics
 
 # Generate random profiles
 profiles = get_random_profiles(count_profiles=100, required_fields=['blood_group', 'current_location', 'birthdate'])
