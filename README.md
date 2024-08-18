@@ -1,112 +1,183 @@
-Here's a comprehensive `README.md` file for the provided Python code. It includes an overview, installation instructions, usage, and explanations for each function.
+# Profile and Stock Market Statistics Calculator
 
----
-
-# Profile and Stock Market Statistics Generator
+This project provides functions for generating and analyzing random profile data and stock market statistics using the `Faker` library. It includes utilities for creating fake profiles and companies, and calculating various statistics from this generated data.
 
 ## Overview
 
-This Python package provides functionality to generate synthetic profiles and stock market data, and to calculate various statistics based on this generated data. It includes two primary functionalities:
+### Functions
 
-1. **Profile Statistics Calculation**: Generates fake profiles and computes statistics such as the most common blood group, mean latitude and longitude, oldest age, and average age.
-2. **Stock Market Statistics Calculation**: Generates fake stock market data for a given number of companies and calculates weighted averages for stock prices.
+1. **`get_random_profiles(count_profiles: int, required_fields: List) -> List`**:
+   Generates a specified number of fake profiles using the `Faker` library with the requested fields.
 
-The generation of fake data is done using the `Faker` library, which allows for the creation of realistic random data.
+2. **`calculate_statistics_with_named_tuples(profile_list: List) -> Tuple`**:
+   Calculates aggregate statistics from a list of profiles represented by named tuples.
 
-## Installation
+3. **`calculate_statistics_with_dict(profile_list: List) -> Tuple`**:
+   Calculates aggregate statistics from a list of profiles represented by dictionaries.
 
-Ensure you have the necessary libraries installed. You can install the required libraries using pip:
+4. **`get_random_companies(count_companies: int) -> Tuple`**:
+   Generates a specified number of fake stock market companies with random stock data.
+
+5. **`calculate_stock_market_statistics(companies_list: List) -> Tuple`**:
+   Calculates stock market statistics from a list of companies, including weighted averages for opening, high, and closing stock prices.
+
+## Requirements
+
+- Python 3.x
+- `Faker` library
+
+Install the necessary dependencies with:
 
 ```bash
 pip install faker
 ```
 
-## Functions
+## Function Details
 
-### 1. `calculate_statistics_with_named_tuples(count_profiles: int) -> Tuple`
-
-Generates fake profiles using named tuples and calculates aggregate statistics.
-
-**Arguments:**
-
-- `count_profiles` (int): Number of profiles to generate.
-
-**Returns:**
-
-- `Tuple`: A named tuple containing the following statistics:
-  - `largest_blood_group`: The most common blood group among the generated profiles.
-  - `mean_lat`: The mean latitude of the current locations.
-  - `mean_long`: The mean longitude of the current locations.
-  - `oldest_age`: The age of the oldest person in the dataset.
-  - `avg_age`: The average age of all profiles.
-
-**Example Usage:**
+### `get_random_profiles`
 
 ```python
-stats = calculate_statistics_with_named_tuples(1000)
-print(stats)
+def get_random_profiles(count_profiles: int, required_fields: List) -> List:
+    """
+    Generates random profiles using the Faker package.
+
+    Args:
+        count_profiles (int): Number of profiles to generate.
+        required_fields (List): List of strings specifying the required profile features.
+
+    Raises:
+        ValueError: If count_profiles is non-positive.
+
+    Returns:
+        List: List of profiles as dictionaries.
+    """
 ```
 
-### 2. `calculate_statistics_with_dict(count_profiles: int) -> Tuple`
+**Parameters**:
+- `count_profiles` (int): The number of profiles to generate. Must be positive.
+- `required_fields` (List): List of profile features to include in the generated profiles.
 
-Generates fake profiles using dictionaries and calculates aggregate statistics.
+**Returns**:
+- `List`: List of dictionaries, each representing a profile with specified features.
 
-**Arguments:**
-
-- `count_profiles` (int): Number of profiles to generate.
-
-**Returns:**
-
-- `Tuple`: A named tuple containing the following statistics:
-  - `largest_blood_group`: The most common blood group among the generated profiles.
-  - `mean_lat`: The mean latitude of the current locations.
-  - `mean_long`: The mean longitude of the current locations.
-  - `oldest_age`: The age of the oldest person in the dataset.
-  - `avg_age`: The average age of all profiles.
-
-**Example Usage:**
+### `calculate_statistics_with_named_tuples`
 
 ```python
-stats = calculate_statistics_with_dict(1000)
-print(stats)
+def calculate_statistics_with_named_tuples(profile_list: List) -> Tuple:
+    """
+    Calculate aggregate statistics for passed profiles using named tuples.
+
+    Args:
+        profile_list (List): List of profiles as dictionaries.
+
+    Returns:
+        Tuple: Named tuple containing statistics including largest blood group,
+               mean latitude, mean longitude, oldest age, and average age.
+    """
 ```
 
-### 3. `calculate_stock_market_statistics(count_companies: int) -> Tuple`
+**Parameters**:
+- `profile_list` (List): List of profiles as dictionaries.
 
-Generates fake stock market data for a given number of companies and calculates weighted averages for stock prices.
+**Returns**:
+- `Tuple`: Named tuple with fields `largest_blood_group`, `mean_lat`, `mean_long`, `oldest_age`, and `avg_age`.
 
-**Arguments:**
-
-- `count_companies` (int): Number of companies to generate.
-
-**Returns:**
-
-- `Tuple`: A named tuple containing the following statistics:
-  - `stock_mkt_open`: The weighted average opening price of the stocks.
-  - `stock_mkt_high`: The weighted average highest price of the stocks.
-  - `stock_mkt_close`: The weighted average closing price of the stocks.
-
-**Example Usage:**
+### `calculate_statistics_with_dict`
 
 ```python
-stock_stats = calculate_stock_market_statistics(100)
+def calculate_statistics_with_dict(profile_list: List) -> Tuple:
+    """
+    Calculate aggregate statistics for passed profiles using dictionaries.
+
+    Args:
+        profile_list (List): List of profiles as dictionaries.
+
+    Returns:
+        Tuple: Named tuple containing statistics including largest blood group,
+               mean latitude, mean longitude, oldest age, and average age.
+    """
+```
+
+**Parameters**:
+- `profile_list` (List): List of profiles as dictionaries.
+
+**Returns**:
+- `Tuple`: Named tuple with fields `largest_blood_group`, `mean_lat`, `mean_long`, `oldest_age`, and `avg_age`.
+
+### `get_random_companies`
+
+```python
+def get_random_companies(count_companies: int) -> Tuple:
+    """
+    Generate random stock market companies.
+
+    Args:
+        count_companies (int): Number of companies to generate.
+
+    Raises:
+        ValueError: If count_companies is non-positive.
+
+    Returns:
+        Tuple: List of named tuples representing companies with stock data.
+    """
+```
+
+**Parameters**:
+- `count_companies` (int): The number of companies to generate. Must be positive.
+
+**Returns**:
+- `Tuple`: List of named tuples, each representing a company with `company_name`, `symbol`, `open`, `high`, `close`, and `weight`.
+
+### `calculate_stock_market_statistics`
+
+```python
+def calculate_stock_market_statistics(companies_list: List) -> Tuple:
+    """
+    Calculate stock market statistics from a list of companies.
+
+    Args:
+        companies_list (List): List of companies as named tuples.
+
+    Returns:
+        Tuple: Named tuple containing weighted averages for stock market open, high, and close prices.
+    """
+```
+
+**Parameters**:
+- `companies_list` (List): List of companies as named tuples.
+
+**Returns**:
+- `Tuple`: Named tuple with fields `stock_mkt_open`, `stock_mkt_high`, and `stock_mkt_close`.
+
+## Usage
+
+Here’s how you can use the functions in your code:
+
+```python
+from your_module import get_random_profiles, calculate_statistics_with_named_tuples, calculate_statistics_with_dict, get_random_companies, calculate_stock_market_statistics
+
+# Generate random profiles
+profiles = get_random_profiles(count_profiles=100, required_fields=['blood_group', 'current_location', 'birthdate'])
+
+# Calculate statistics using named tuples
+stats_named_tuples = calculate_statistics_with_named_tuples(profiles)
+
+# Calculate statistics using dictionaries
+stats_dict = calculate_statistics_with_dict(profiles)
+
+# Generate random companies
+companies = get_random_companies(count_companies=50)
+
+# Calculate stock market statistics
+stock_stats = calculate_stock_market_statistics(companies)
+
+print(stats_named_tuples)
+print(stats_dict)
 print(stock_stats)
 ```
 
-## Notes
+## Contributing
 
-- **Profile Data**:
-  - `calculate_statistics_with_named_tuples` and `calculate_statistics_with_dict` both generate profiles with attributes such as blood group, current location (latitude and longitude), and birthdate.
-  - The `oldest_age` and `avg_age` are calculated based on the difference between the current date and the birthdate.
-
-- **Stock Market Data**:
-  - `calculate_stock_market_statistics` generates stock data with attributes including company name, ticker symbol, opening price, high price, closing price, and a random weight.
-  - The weighted averages are calculated based on the random weights assigned to each company.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Contributions are welcome! Please fork the repository and submit a pull request with your changes. Make sure to include tests and ensure that your code adheres to the project's coding standards.
 
 ---
-
-Feel free to customize this `README.md` file based on your needs or project specifics.
