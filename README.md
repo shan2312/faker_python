@@ -1,4 +1,4 @@
-![Build Status](https://github.com/shan2312/faker_python/.github/workflows/Python\application/badge.svgX)
+![Build Status](https://github.com/shan2312/faker_python/workflows/Python%20application/badge.svg)
 # Profile and Stock Market Statistics Calculator
 
 This project provides functions for generating and analyzing random profile data and stock market statistics using the `Faker` library. It includes utilities for creating fake profiles and companies, and calculating various statistics from this generated data.
